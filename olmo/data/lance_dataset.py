@@ -10,6 +10,7 @@ from typing import Dict, List, Tuple, Optional, Union, Any
 from ..aliases import PathOrStr
 
 __all__ = ["LanceDataset"]
+ListOrStr = Union[str, List]
 
 
 class LanceDataset(Dataset[Dict[str, Any]]):
@@ -37,7 +38,7 @@ class LanceDataset(Dataset[Dict[str, Any]]):
 
     def __init__(
         self,
-        *paths: PathOrStr,
+        *paths: ListOrStr,
         chunk_size: int = 1024,
         lance_dtype=np.uint16,
         metadata: Optional[Union[List[Dict[str, Any]], Dict[str, Any]]] = None,
@@ -104,6 +105,8 @@ class LanceDataset(Dataset[Dict[str, Any]]):
         def __len__(self):
             # So we don't run into Index OOB errors
             return self.datasets[0].count_rows() - self._chunk_size
+        
+        def 
 
 
 class GPTDataset(Dataset):
